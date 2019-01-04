@@ -1,17 +1,38 @@
-#inspired from https://blog.daiyanyingyu.uk/2018/03/20/powershell-mtp/
+<#
+.SYNOPSIS
+A script to copy files from the phone camera to local disk. Uses shell to access the MTP files.
+
+
+.DESCRIPTION
+This is a weekend PowerShell script to help backup photos on the phone to the computer.
+Inspired from https://blog.daiyanyingyu.uk/2018/03/20/powershell-mtp/
+
+.EXAMPLE
+ \\emeacssdfs.europe.corp.microsoft.com\netpod\rfl\Compare-PStatSummary.ps1 -SDPPath \\MyPC\temp\SDPs\ClusterReports
+ This command will compare all !PStatSum_*.TXT in folder \\MyPC\temp\SDPs\ClusterReports
+
+.EXAMPLE
+.\Copy-MTPCameraByMonth.ps1 -MTPSourcePath WillyMobile\Card\DCIM\Camera -TargetPath D:\PhoneBackup\Camera
+ This will copy files from the camera folder on the phone to the target path and segregate by month.
+ 
+.LINK
+https://plusontech.com/wp-admin/post.php?post=182&action=edit
+https://github.com/WillyMoselhy/Weekend-Projects
+#>
 
 Param(
-    # Path to location to copy the files from MTP device
-    [Parameter(Mandatory = $false)]
-    [String] $TargetPath,
-
     # Folder path on the MTP device. e.g. WillyMobile\Card\DCIM\Camera
-    [Parameter(Mandatory = $false)]
-    [string]
-    $MTPSourcePath
+    [Parameter(Mandatory = $true)]
+    [string] $MTPSourcePath,
+    
+    # Path to location to copy the files from MTP device
+    [Parameter(Mandatory = $true)]
+    [String] $TargetPath
 )
 
 function GetMTPFolder ($MTPSourcePath){
+    # Synopsis Loop through path to get the desired folder
+
     #Get the MTP folder item
     $PathArray = $MTPSourcePath -split "\\" # Double \\ for regex escape \
 
