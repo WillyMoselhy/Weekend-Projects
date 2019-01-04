@@ -2,7 +2,6 @@
 .SYNOPSIS
 A script to copy files from the phone camera to local disk. Uses shell to access the MTP files.
 
-
 .DESCRIPTION
 This is a weekend PowerShell script to help backup photos on the phone to the computer.
 Inspired from https://blog.daiyanyingyu.uk/2018/03/20/powershell-mtp/
